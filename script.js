@@ -124,6 +124,11 @@ const anoDetalhe = document.querySelector("#detailYear");
 const dimensoesDetalhe = document.querySelector("#detailDimensions");
 const precoDetalhe = document.querySelector("#detailPrice");
 const acoesDetalhe = document.querySelector("#detailActions");
+const listaDePedidos = document.querySelector("#ordersList");
+const resumoDePedidos = document.querySelector("#ordersSummary");
+const pedidosVazios = document.querySelector("#ordersEmpty");
+const botaoExportarPedidos = document.querySelector("#exportOrders");
+const botaoLimparPedidos = document.querySelector("#clearOrders");
 
 const cotacoes = {
   dolar: null,
@@ -133,6 +138,7 @@ const cotacoes = {
 };
 
 const telefoneWhatsApp = "5586999954249";
+const chavePedidos = "carlos-pedidos";
 let moedaSelecionada = "BRL";
 
 function formatarReal(valor) {
@@ -194,6 +200,98 @@ function atualizarAvisoDeCotacao() {
 function linkDoWhatsApp(tituloDaObra) {
   const mensagem = `Olá, tenho interesse na obra "${tituloDaObra}" do Carlos Ventura.`;
   return `https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+}
+
+function lerPedidos() {
+  return JSON.parse(localStorage.getItem(chavePedidos) || "[]");
+}
+
+function salvarPedidos(pedidos) {
+  localStorage.setItem(chavePedidos, JSON.stringify(pedidos));
+}
+
+function proximoStatus(statusAtual) {
+  if (statusAtual === "Novo") return "Em contato";
+  if (statusAtual === "Em contato") return "Reservado";
+  if (statusAtual === "Reservado") return "Finalizado";
+  return "Novo";
+}
+
+function criarResumoPedidos(pedidos) {
+  const totais = {
+    Novo: 0,
+    "Em contato": 0,
+    Reservado: 0,
+    Finalizado: 0
+  };
+
+  pedidos.forEach((pedido) => {
+    totais[pedido.status] = (totais[pedido.status] || 0) + 1;
+  });
+
+  resumoDePedidos.innerHTML = `
+    <article><strong>${pedidos.length}</strong><span>Total</span></article>
+    <article><strong>${totais.Novo}</strong><span>Novos</span></article>
+    <article><strong>${totais["Em contato"]}</strong><span>Em contato</span></article>
+    <article><strong>${totais.Reservado}</strong><span>Reservados</span></article>
+    <article><strong>${totais.Finalizado}</strong><span>Finalizados</span></article>
+  `;
+}
+
+function renderizarPedidos() {
+  const pedidos = lerPedidos().sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm));
+  listaDePedidos.innerHTML = "";
+  pedidosVazios.hidden = pedidos.length > 0;
+  botaoExportarPedidos.disabled = pedidos.length === 0;
+  botaoLimparPedidos.disabled = pedidos.length === 0;
+  criarResumoPedidos(pedidos);
+
+  pedidos.forEach((pedido) => {
+    const item = document.createElement("article");
+    item.className = "order-card";
+    item.innerHTML = `
+      <div>
+        <p class="eyebrow">${pedido.numero}</p>
+        <h3>${pedido.obra}</h3>
+        <p>${pedido.nome} · ${pedido.email} · ${pedido.telefone}</p>
+      </div>
+      <dl>
+        <div><dt>Status</dt><dd>${pedido.status}</dd></div>
+        <div><dt>Valor</dt><dd>${pedido.preco}</dd></div>
+        <div><dt>Pagamento</dt><dd>${pedido.pagamento}</dd></div>
+        <div><dt>Data</dt><dd>${new Date(pedido.criadoEm).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" })}</dd></div>
+      </dl>
+      ${pedido.observacao ? `<p class="order-note">${pedido.observacao}</p>` : ""}
+      <div class="order-actions">
+        <button class="button contact-button" type="button" data-status="${pedido.id}">Avançar status</button>
+        <button class="button contact-button danger-button" type="button" data-remove="${pedido.id}">Remover</button>
+      </div>
+    `;
+    listaDePedidos.append(item);
+  });
+}
+
+function criarPedido() {
+  const obra = obras.find((item) => item.titulo === campoObra.value);
+  const pedidos = lerPedidos();
+  const agora = new Date();
+
+  pedidos.push({
+    id: String(agora.getTime()),
+    numero: `PED-${String(pedidos.length + 1).padStart(3, "0")}`,
+    obra: campoObra.value,
+    preco: obra ? formatarReal(obra.preco) : "A consultar",
+    nome: document.querySelector("#nameInput").value,
+    email: document.querySelector("#emailInput").value,
+    telefone: document.querySelector("#phoneInput").value,
+    pagamento: document.querySelector("#paymentInput").value,
+    observacao: document.querySelector("#noteInput").value.trim(),
+    status: "Novo",
+    criadoEm: agora.toISOString()
+  });
+
+  salvarPedidos(pedidos);
+  renderizarPedidos();
 }
 
 function preencherFiltros() {
@@ -377,21 +475,52 @@ botaoFecharDetalhes.addEventListener("click", () => modalDeDetalhes.close());
 formularioDeInteresse.addEventListener("submit", (evento) => {
   evento.preventDefault();
 
-  const interessados = JSON.parse(localStorage.getItem("carlos-interesses") || "[]");
-  interessados.push({
-    obra: campoObra.value,
-    nome: document.querySelector("#nameInput").value,
-    email: document.querySelector("#emailInput").value,
-    telefone: document.querySelector("#phoneInput").value,
-    criadoEm: new Date().toISOString()
-  });
-
-  localStorage.setItem("carlos-interesses", JSON.stringify(interessados));
-  avisoDoFormulario.textContent = "Interesse salvo com sucesso.";
+  criarPedido();
+  avisoDoFormulario.textContent = "Pedido simulado salvo com sucesso.";
   setTimeout(() => modal.close(), 900);
+});
+
+listaDePedidos.addEventListener("click", (evento) => {
+  const botaoStatus = evento.target.closest("[data-status]");
+  const botaoRemover = evento.target.closest("[data-remove]");
+
+  if (botaoStatus) {
+    const pedidos = lerPedidos().map((pedido) => {
+      if (pedido.id === botaoStatus.dataset.status) {
+        return { ...pedido, status: proximoStatus(pedido.status) };
+      }
+      return pedido;
+    });
+    salvarPedidos(pedidos);
+    renderizarPedidos();
+  }
+
+  if (botaoRemover) {
+    salvarPedidos(lerPedidos().filter((pedido) => pedido.id !== botaoRemover.dataset.remove));
+    renderizarPedidos();
+  }
+});
+
+botaoExportarPedidos.addEventListener("click", () => {
+  const pedidos = lerPedidos();
+  const texto = JSON.stringify(pedidos, null, 2);
+  const blob = new Blob([texto], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "pedidos-carlos-ventura.json";
+  link.click();
+  URL.revokeObjectURL(url);
+});
+
+botaoLimparPedidos.addEventListener("click", () => {
+  if (!confirm("Limpar todos os pedidos simulados?")) return;
+  salvarPedidos([]);
+  renderizarPedidos();
 });
 
 preencherFiltros();
 renderizarColecoes();
 renderizarObras();
+renderizarPedidos();
 carregarCotacoes();

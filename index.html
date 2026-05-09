@@ -45,6 +45,7 @@
         <a href="#obras">Obras</a>
         <a href="#colecoes">Coleções</a>
         <a href="#sobre">Sobre</a>
+        <a href="#pedidos">Pedidos</a>
         <a href="#contato">Contato</a>
       </nav>
     </header>
@@ -167,6 +168,21 @@
         </div>
       </section>
 
+      <section class="section orders" id="pedidos" aria-labelledby="pedidosTitulo">
+        <div class="section-heading">
+          <p class="eyebrow">Simulador</p>
+          <h2 id="pedidosTitulo">Pedidos dos clientes</h2>
+          <p>Os pedidos simulados ficam salvos neste navegador para consulta, atualização de status e controle inicial.</p>
+        </div>
+        <div class="orders-summary" id="ordersSummary" aria-live="polite"></div>
+        <div class="orders-actions">
+          <button class="button contact-button" type="button" id="exportOrders">Exportar pedidos</button>
+          <button class="button contact-button danger-button" type="button" id="clearOrders">Limpar pedidos</button>
+        </div>
+        <div class="orders-list" id="ordersList" aria-live="polite"></div>
+        <p class="art-empty" id="ordersEmpty">Nenhum pedido simulado ainda.</p>
+      </section>
+
       <section class="section contact" id="contato">
         <div class="contact-copy">
           <p class="eyebrow">Interesse</p>
@@ -204,6 +220,19 @@
         <label>
           Telefone
           <input id="phoneInput" required autocomplete="tel" aria-describedby="formNote" />
+        </label>
+        <label>
+          Forma de pagamento
+          <select id="paymentInput" required aria-describedby="formNote">
+            <option value="Pix">Pix</option>
+            <option value="Cartão">Cartão</option>
+            <option value="Transferência">Transferência</option>
+            <option value="A combinar">A combinar</option>
+          </select>
+        </label>
+        <label>
+          Observação
+          <textarea id="noteInput" rows="3" placeholder="Ex: quero reservar até sexta-feira" aria-describedby="formNote"></textarea>
         </label>
         <button class="button primary" type="submit">Salvar interesse</button>
         <p class="form-note" id="formNote" aria-live="polite"></p>
