@@ -246,7 +246,7 @@ p {
 
 .toolbar {
   display: grid;
-  grid-template-columns: repeat(4, minmax(140px, 1fr)) auto;
+  grid-template-columns: repeat(5, minmax(130px, 1fr)) auto;
   gap: 14px;
   padding: 18px 5vw;
   border-bottom: 1px solid var(--line);

@@ -103,6 +103,7 @@ const filtroDeTecnica = document.querySelector("#techniqueFilter");
 const filtroDeAno = document.querySelector("#yearFilter");
 const filtroDePreco = document.querySelector("#priceFilter");
 const filtroDeMoeda = document.querySelector("#currencyFilter");
+const filtroDeStatus = document.querySelector("#statusFilter");
 const botaoLimparFiltros = document.querySelector("#resetFilters");
 const modal = document.querySelector("#interestModal");
 const tituloDoModal = document.querySelector("#modalTitle");
@@ -221,11 +222,17 @@ function correspondeAoPreco(obra) {
   return true;
 }
 
+function correspondeAoStatus(obra) {
+  if (filtroDeStatus.value === "disponiveis") return !obra.vendida;
+  if (filtroDeStatus.value === "vendidas") return obra.vendida;
+  return true;
+}
+
 function obrasFiltradas() {
   return obras.filter((obra) => {
     const tecnicaSelecionada = filtroDeTecnica.value === "todas" || obra.tecnica === filtroDeTecnica.value;
     const anoSelecionado = filtroDeAno.value === "todos" || String(obra.ano) === filtroDeAno.value;
-    return tecnicaSelecionada && anoSelecionado && correspondeAoPreco(obra);
+    return tecnicaSelecionada && anoSelecionado && correspondeAoPreco(obra) && correspondeAoStatus(obra);
   });
 }
 
@@ -345,7 +352,7 @@ acoesDetalhe.addEventListener("click", (evento) => {
   abrirInteresse(botao.dataset.obra);
 });
 
-[filtroDeTecnica, filtroDeAno, filtroDePreco].forEach((controle) => {
+[filtroDeTecnica, filtroDeAno, filtroDePreco, filtroDeStatus].forEach((controle) => {
   controle.addEventListener("change", renderizarObras);
 });
 
@@ -358,6 +365,7 @@ botaoLimparFiltros.addEventListener("click", () => {
   filtroDeTecnica.value = "todas";
   filtroDeAno.value = "todos";
   filtroDePreco.value = "todos";
+  filtroDeStatus.value = "todas";
   filtroDeMoeda.value = "BRL";
   moedaSelecionada = "BRL";
   renderizarObras();
