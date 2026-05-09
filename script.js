@@ -111,6 +111,7 @@ const formularioDeInteresse = document.querySelector("#interestForm");
 const botaoFecharModal = document.querySelector("#closeModal");
 const avisoDoFormulario = document.querySelector("#formNote");
 const avisoDeCotacao = document.querySelector("#currencyStatus");
+const mensagemSemObras = document.querySelector("#emptyMessage");
 
 const cotacoes = {
   dolar: null,
@@ -213,8 +214,10 @@ function obrasFiltradas() {
 
 function renderizarObras() {
   gradeDeObras.innerHTML = "";
+  const lista = obrasFiltradas();
+  mensagemSemObras.hidden = lista.length > 0;
 
-  obrasFiltradas().forEach((obra) => {
+  lista.forEach((obra) => {
     const artigo = document.createElement("article");
     artigo.className = "art-card";
     artigo.innerHTML = `
@@ -255,10 +258,10 @@ function abrirInteresse(idDaObra) {
   const obra = obras.find((item) => item.id === idDaObra);
   if (!obra || obra.vendida) return;
 
+  formularioDeInteresse.reset();
   campoObra.value = obra.titulo;
   tituloDoModal.textContent = `Interesse em "${obra.titulo}"`;
   avisoDoFormulario.textContent = "";
-  formularioDeInteresse.reset();
   modal.showModal();
 }
 

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#obras">Pular para as obras</a>
     <header class="topbar">
       <a class="brand" href="#inicio" aria-label="Carlos Ventura">
         <span class="brand-mark">CV</span>
@@ -41,19 +42,19 @@
 
       <section class="toolbar" aria-label="Filtros de obras">
         <div>
-          <span class="label">Técnica</span>
+          <label class="label" for="techniqueFilter">Técnica</label>
           <select id="techniqueFilter">
             <option value="todas">Todas</option>
           </select>
         </div>
         <div>
-          <span class="label">Ano</span>
+          <label class="label" for="yearFilter">Ano</label>
           <select id="yearFilter">
             <option value="todos">Todos</option>
           </select>
         </div>
         <div>
-          <span class="label">Preço</span>
+          <label class="label" for="priceFilter">Preço</label>
           <select id="priceFilter">
             <option value="todos">Todos</option>
             <option value="ate-3000">Até R$ 3.000</option>
@@ -62,15 +63,15 @@
           </select>
         </div>
         <div>
-          <span class="label">Moeda</span>
-          <select id="currencyFilter">
+          <label class="label" for="currencyFilter">Moeda</label>
+          <select id="currencyFilter" aria-describedby="currencyStatus">
             <option value="BRL">Real</option>
             <option value="USD">Dólar</option>
             <option value="EUR">Euro</option>
           </select>
         </div>
         <button class="icon-button" id="resetFilters" type="button" aria-label="Limpar filtros" title="Limpar filtros">↺</button>
-        <p class="currency-status" id="currencyStatus">Cotação sendo carregada...</p>
+        <p class="currency-status" id="currencyStatus" aria-live="polite">Cotação sendo carregada...</p>
       </section>
 
       <section class="section" id="obras">
@@ -78,7 +79,8 @@
           <p class="eyebrow">Portfólio</p>
           <h2>Obras disponíveis e vendidas</h2>
         </div>
-        <div class="art-grid" id="artGrid"></div>
+        <div class="art-grid" id="artGrid" aria-live="polite"></div>
+        <p class="art-empty" id="emptyMessage" hidden>Nenhuma obra encontrada com esses filtros.</p>
       </section>
 
       <section class="section band" id="colecoes">
@@ -132,18 +134,18 @@
         <input type="hidden" id="artworkInput" />
         <label>
           Nome
-          <input id="nameInput" required autocomplete="name" />
+          <input id="nameInput" required autocomplete="name" aria-describedby="formNote" />
         </label>
         <label>
           E-mail
-          <input id="emailInput" required type="email" autocomplete="email" />
+          <input id="emailInput" required type="email" autocomplete="email" aria-describedby="formNote" />
         </label>
         <label>
           Telefone
-          <input id="phoneInput" required autocomplete="tel" />
+          <input id="phoneInput" required autocomplete="tel" aria-describedby="formNote" />
         </label>
         <button class="button primary" type="submit">Salvar interesse</button>
-        <p class="form-note" id="formNote"></p>
+        <p class="form-note" id="formNote" aria-live="polite"></p>
       </form>
     </dialog>
 
