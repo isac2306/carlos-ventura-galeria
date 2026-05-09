@@ -102,6 +102,7 @@ const gradeDeColecoes = document.querySelector("#collectionGrid");
 const filtroDeTecnica = document.querySelector("#techniqueFilter");
 const filtroDeAno = document.querySelector("#yearFilter");
 const filtroDePreco = document.querySelector("#priceFilter");
+const filtroDeMoeda = document.querySelector("#currencyFilter");
 const botaoLimparFiltros = document.querySelector("#resetFilters");
 const modal = document.querySelector("#interestModal");
 const tituloDoModal = document.querySelector("#modalTitle");
@@ -109,11 +110,16 @@ const campoObra = document.querySelector("#artworkInput");
 const formularioDeInteresse = document.querySelector("#interestForm");
 const botaoFecharModal = document.querySelector("#closeModal");
 const avisoDoFormulario = document.querySelector("#formNote");
+const avisoDeCotacao = document.querySelector("#currencyStatus");
 
 const cotacoes = {
   dolar: null,
-  euro: null
+  euro: null,
+  atualizadaEm: null,
+  usandoReserva: false
 };
+
+let moedaSelecionada = "BRL";
 
 function formatarReal(valor) {
   return valor.toLocaleString("pt-BR", {
@@ -129,12 +135,46 @@ function formatarMoedaEstrangeira(valor, codigo) {
   });
 }
 
-function precoConvertido(preco) {
+function formatarPrecoPrincipal(preco) {
+  if (moedaSelecionada === "USD" && cotacoes.dolar) {
+    return formatarMoedaEstrangeira(preco / cotacoes.dolar, "USD");
+  }
+
+  if (moedaSelecionada === "EUR" && cotacoes.euro) {
+    return formatarMoedaEstrangeira(preco / cotacoes.euro, "EUR");
+  }
+
+  return formatarReal(preco);
+}
+
+function resumoDeConversao(preco) {
   if (!cotacoes.dolar || !cotacoes.euro) {
     return "Conversão internacional indisponível no momento";
   }
 
+  if (moedaSelecionada === "USD") {
+    return `Equivale a ${formatarReal(preco)} · ${formatarMoedaEstrangeira(preco / cotacoes.euro, "EUR")}`;
+  }
+
+  if (moedaSelecionada === "EUR") {
+    return `Equivale a ${formatarReal(preco)} · ${formatarMoedaEstrangeira(preco / cotacoes.dolar, "USD")}`;
+  }
+
   return `${formatarMoedaEstrangeira(preco / cotacoes.dolar, "USD")} · ${formatarMoedaEstrangeira(preco / cotacoes.euro, "EUR")}`;
+}
+
+function atualizarAvisoDeCotacao() {
+  if (!cotacoes.dolar || !cotacoes.euro) {
+    avisoDeCotacao.textContent = "Cotação indisponível no momento.";
+    return;
+  }
+
+  const horario = cotacoes.atualizadaEm
+    ? cotacoes.atualizadaEm.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" })
+    : "agora";
+  const origem = cotacoes.usandoReserva ? "valores de reserva" : "AwesomeAPI";
+
+  avisoDeCotacao.textContent = `Cotação atualizada por ${origem} em ${horario}: dólar ${formatarReal(cotacoes.dolar)} · euro ${formatarReal(cotacoes.euro)}.`;
 }
 
 function preencherFiltros() {
@@ -186,8 +226,8 @@ function renderizarObras() {
         <h3>${obra.titulo}</h3>
         <p>${obra.descricao}</p>
         <div class="meta"><span>${obra.tecnica}</span></div>
-        <div class="price">${formatarReal(obra.preco)}</div>
-        <div class="converted">${obra.vendida ? "Portfólio de obras passadas" : precoConvertido(obra.preco)}</div>
+        <div class="price">${formatarPrecoPrincipal(obra.preco)}</div>
+        <div class="converted">${obra.vendida ? "Portfólio de obras passadas" : resumoDeConversao(obra.preco)}</div>
         <div class="card-actions">
           <button class="button primary" type="button" data-obra="${obra.id}" ${obra.vendida ? "disabled" : ""}>
             ${obra.vendida ? "Obra vendida" : "Adquirir obra"}
@@ -228,10 +268,15 @@ async function carregarCotacoes() {
     const dados = await resposta.json();
     cotacoes.dolar = Number(dados.USDBRL.bid);
     cotacoes.euro = Number(dados.EURBRL.bid);
+    cotacoes.atualizadaEm = new Date();
+    cotacoes.usandoReserva = false;
   } catch {
     cotacoes.dolar = 5;
     cotacoes.euro = 5.4;
+    cotacoes.atualizadaEm = new Date();
+    cotacoes.usandoReserva = true;
   } finally {
+    atualizarAvisoDeCotacao();
     renderizarObras();
   }
 }
@@ -245,10 +290,17 @@ gradeDeObras.addEventListener("click", (evento) => {
   controle.addEventListener("change", renderizarObras);
 });
 
+filtroDeMoeda.addEventListener("change", () => {
+  moedaSelecionada = filtroDeMoeda.value;
+  renderizarObras();
+});
+
 botaoLimparFiltros.addEventListener("click", () => {
   filtroDeTecnica.value = "todas";
   filtroDeAno.value = "todos";
   filtroDePreco.value = "todos";
+  filtroDeMoeda.value = "BRL";
+  moedaSelecionada = "BRL";
   renderizarObras();
 });
 

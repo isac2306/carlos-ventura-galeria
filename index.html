@@ -61,7 +61,16 @@
             <option value="acima-6000">Acima de R$ 6.000</option>
           </select>
         </div>
+        <div>
+          <span class="label">Moeda</span>
+          <select id="currencyFilter">
+            <option value="BRL">Real</option>
+            <option value="USD">Dólar</option>
+            <option value="EUR">Euro</option>
+          </select>
+        </div>
         <button class="icon-button" id="resetFilters" type="button" aria-label="Limpar filtros" title="Limpar filtros">↺</button>
+        <p class="currency-status" id="currencyStatus">Cotação sendo carregada...</p>
       </section>
 
       <section class="section" id="obras">
