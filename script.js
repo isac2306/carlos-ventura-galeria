@@ -120,6 +120,7 @@ const cotacoes = {
   usandoReserva: false
 };
 
+const telefoneWhatsApp = "5586999954249";
 let moedaSelecionada = "BRL";
 
 function formatarReal(valor) {
@@ -176,6 +177,11 @@ function atualizarAvisoDeCotacao() {
   const origem = cotacoes.usandoReserva ? "valores de reserva" : "AwesomeAPI";
 
   avisoDeCotacao.textContent = `Cotação atualizada por ${origem} em ${horario}: dólar ${formatarReal(cotacoes.dolar)} · euro ${formatarReal(cotacoes.euro)}.`;
+}
+
+function linkDoWhatsApp(tituloDaObra) {
+  const mensagem = `Olá, tenho interesse na obra "${tituloDaObra}" do Carlos Ventura.`;
+  return `https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(mensagem)}`;
 }
 
 function preencherFiltros() {
@@ -235,6 +241,7 @@ function renderizarObras() {
           <button class="button primary" type="button" data-obra="${obra.id}" ${obra.vendida ? "disabled" : ""}>
             ${obra.vendida ? "Obra vendida" : "Adquirir obra"}
           </button>
+          ${obra.vendida ? "" : `<a class="button whatsapp-button" href="${linkDoWhatsApp(obra.titulo)}" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp sobre a obra ${obra.titulo}">WhatsApp</a>`}
         </div>
       </div>
     `;

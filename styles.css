@@ -231,6 +231,19 @@ p {
   opacity: 0.55;
 }
 
+.card-actions {
+  margin-top: 14px;
+}
+
+.card-actions .button {
+  min-height: 42px;
+}
+
+.whatsapp-button {
+  background: white;
+  color: var(--ink);
+}
+
 .toolbar {
   display: grid;
   grid-template-columns: repeat(4, minmax(140px, 1fr)) auto;
