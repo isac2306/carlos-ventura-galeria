@@ -8,7 +8,7 @@ const obras = [
     dimensoes: "80 x 100 cm",
     preco: 6200,
     vendida: false,
-    imagem: "assets/artworks.png",
+    imagem: "assets/artworks-optimized.jpg",
     posicao: "left top",
     descricao: "Uma paisagem de respiro seco, feita em camadas de cor quente e pausa."
   },
@@ -21,7 +21,7 @@ const obras = [
     dimensoes: "70 x 90 cm",
     preco: 4800,
     vendida: false,
-    imagem: "assets/artworks.png",
+    imagem: "assets/artworks-optimized.jpg",
     posicao: "center top",
     descricao: "Luzes, fachadas e memória afetiva de uma cidade em movimento."
   },
@@ -34,7 +34,7 @@ const obras = [
     dimensoes: "42 x 59 cm",
     preco: 2800,
     vendida: false,
-    imagem: "assets/artworks.png",
+    imagem: "assets/artworks-optimized.jpg",
     posicao: "right top",
     descricao: "Transparências leves sobre papel, com atmosfera íntima e luminosa."
   },
@@ -47,7 +47,7 @@ const obras = [
     dimensoes: "100 x 120 cm",
     preco: 7600,
     vendida: true,
-    imagem: "assets/artworks.png",
+    imagem: "assets/artworks-optimized.jpg",
     posicao: "left bottom",
     descricao: "Obra de coleção particular, marcada por textura densa e horizonte baixo."
   },
@@ -60,7 +60,7 @@ const obras = [
     dimensoes: "60 x 80 cm",
     preco: 3900,
     vendida: true,
-    imagem: "assets/artworks.png",
+    imagem: "assets/artworks-optimized.jpg",
     posicao: "center bottom",
     descricao: "Registro de uma fachada imaginada entre sombra, concreto e cor."
   },
@@ -73,7 +73,7 @@ const obras = [
     dimensoes: "50 x 70 cm",
     preco: 3400,
     vendida: false,
-    imagem: "assets/artworks.png",
+    imagem: "assets/artworks-optimized.jpg",
     posicao: "right bottom",
     descricao: "A fluidez da água aparece como lembrança, não como retrato literal."
   }
@@ -83,17 +83,17 @@ const colecoes = [
   {
     nome: "Sertão e Silêncio",
     descricao: "Horizontes, textura mineral e a calma de lugares que parecem guardar segredo.",
-    imagem: "url('assets/artworks.png')"
+    imagem: "url('assets/artworks-optimized.jpg')"
   },
   {
     nome: "Paisagens Urbanas",
     descricao: "Cenas de cidade filtradas por cor, arquitetura e memória cotidiana.",
-    imagem: "url('assets/artworks.png')"
+    imagem: "url('assets/artworks-optimized.jpg')"
   },
   {
     nome: "Aquarelas Recentes",
     descricao: "Papéis leves, transparências e estudos de atmosfera.",
-    imagem: "url('assets/artworks.png')"
+    imagem: "url('assets/artworks-optimized.jpg')"
   }
 ];
 
