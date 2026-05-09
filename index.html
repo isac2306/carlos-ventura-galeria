@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carlos Ventura | Galeria Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Carlos Ventura">
+        <span class="brand-mark">CV</span>
+        <span>Carlos Ventura</span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#obras">Obras</a>
+        <a href="#colecoes">Coleções</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-media" aria-hidden="true">
+          <img src="assets/artworks.png" alt="" />
+        </div>
+        <div class="hero-content">
+          <p class="eyebrow">Galeria online funcional</p>
+          <h1>Carlos Ventura</h1>
+          <p>Obras únicas, feitas à mão, reunidas em uma experiência elegante para ver, reservar e adquirir com confiança.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#obras">Ver obras</a>
+            <a class="button ghost" href="#sobre">Conhecer trajetória</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="Filtros de obras">
+        <div>
+          <span class="label">Técnica</span>
+          <select id="techniqueFilter">
+            <option value="todas">Todas</option>
+          </select>
+        </div>
+        <div>
+          <span class="label">Ano</span>
+          <select id="yearFilter">
+            <option value="todos">Todos</option>
+          </select>
+        </div>
+        <div>
+          <span class="label">Preço</span>
+          <select id="priceFilter">
+            <option value="todos">Todos</option>
+            <option value="ate-3000">Até R$ 3.000</option>
+            <option value="3000-6000">R$ 3.000 a R$ 6.000</option>
+            <option value="acima-6000">Acima de R$ 6.000</option>
+          </select>
+        </div>
+        <button class="icon-button" id="resetFilters" type="button" aria-label="Limpar filtros" title="Limpar filtros">↺</button>
+      </section>
+
+      <section class="section" id="obras">
+        <div class="section-heading">
+          <p class="eyebrow">Portfólio</p>
+          <h2>Obras disponíveis e vendidas</h2>
+        </div>
+        <div class="art-grid" id="artGrid"></div>
+      </section>
+
+      <section class="section band" id="colecoes">
+        <div class="section-heading">
+          <p class="eyebrow">Coleções temáticas</p>
+          <h2>Narrativas para navegar</h2>
+        </div>
+        <div class="collection-grid" id="collectionGrid"></div>
+      </section>
+
+      <section class="section about" id="sobre">
+        <div class="about-copy">
+          <p class="eyebrow">Institucional</p>
+          <h2>Mais de 20 anos criando obras com presença, memória e gesto.</h2>
+          <p>Carlos Ventura é artista plástico com quadros vendidos no Brasil e no exterior. Seu trabalho transita entre óleo, acrílico e aquarela, sempre com atenção à história por trás de cada peça.</p>
+          <div class="awards">
+            <span>Prêmios regionais</span>
+            <span>Exposições coletivas</span>
+            <span>Acervos particulares</span>
+          </div>
+        </div>
+        <ol class="timeline">
+          <li><strong>2004</strong><span>Primeira exposição individual.</span></li>
+          <li><strong>2011</strong><span>Série urbana apresentada em mostra coletiva.</span></li>
+          <li><strong>2018</strong><span>Obras passam a integrar coleções fora do Brasil.</span></li>
+          <li><strong>2026</strong><span>Galeria online para compra e reserva direta.</span></li>
+        </ol>
+      </section>
+
+      <section class="section contact" id="contato">
+        <div>
+          <p class="eyebrow">Interesse</p>
+          <h2>Quer reservar uma obra?</h2>
+          <p>Escolha uma peça disponível e envie seus dados. O interesse fica salvo neste navegador para controle inicial.</p>
+        </div>
+        <a class="button primary" href="#obras">Escolher obra</a>
+      </section>
+    </main>
+
+    <dialog class="modal" id="interestModal">
+      <form method="dialog" class="modal-card" id="interestForm">
+        <button class="close-button" value="cancel" aria-label="Fechar" type="button" id="closeModal">×</button>
+        <p class="eyebrow">Adquirir obra</p>
+        <h2 id="modalTitle">Confirmar interesse</h2>
+        <input type="hidden" id="artworkInput" />
+        <label>
+          Nome
+          <input id="nameInput" required autocomplete="name" />
+        </label>
+        <label>
+          E-mail
+          <input id="emailInput" required type="email" autocomplete="email" />
+        </label>
+        <label>
+          Telefone
+          <input id="phoneInput" required autocomplete="tel" />
+        </label>
+        <button class="button primary" type="submit">Salvar interesse</button>
+        <p class="form-note" id="formNote"></p>
+      </form>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
