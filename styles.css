@@ -396,6 +396,36 @@ input {
   max-width: 620px;
 }
 
+.contact-copy {
+  max-width: 700px;
+}
+
+.contact-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  max-width: 560px;
+}
+
+.contact-button {
+  background: white;
+  color: var(--ink);
+}
+
+.contact-city {
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--olive);
+  font-weight: 800;
+}
+
 .modal {
   width: min(520px, calc(100vw - 28px));
   border: 0;
