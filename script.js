@@ -112,6 +112,17 @@ const botaoFecharModal = document.querySelector("#closeModal");
 const avisoDoFormulario = document.querySelector("#formNote");
 const avisoDeCotacao = document.querySelector("#currencyStatus");
 const mensagemSemObras = document.querySelector("#emptyMessage");
+const modalDeDetalhes = document.querySelector("#detailModal");
+const botaoFecharDetalhes = document.querySelector("#closeDetailModal");
+const imagemDetalhe = document.querySelector("#detailImage");
+const colecaoDetalhe = document.querySelector("#detailCollection");
+const tituloDetalhe = document.querySelector("#detailTitle");
+const descricaoDetalhe = document.querySelector("#detailDescription");
+const tecnicaDetalhe = document.querySelector("#detailTechnique");
+const anoDetalhe = document.querySelector("#detailYear");
+const dimensoesDetalhe = document.querySelector("#detailDimensions");
+const precoDetalhe = document.querySelector("#detailPrice");
+const acoesDetalhe = document.querySelector("#detailActions");
 
 const cotacoes = {
   dolar: null,
@@ -238,6 +249,9 @@ function renderizarObras() {
         <div class="price">${formatarPrecoPrincipal(obra.preco)}</div>
         <div class="converted">${obra.vendida ? "Portfólio de obras passadas" : resumoDeConversao(obra.preco)}</div>
         <div class="card-actions">
+          <button class="button whatsapp-button" type="button" data-detalhe="${obra.id}">
+            Ver detalhes
+          </button>
           <button class="button primary" type="button" data-obra="${obra.id}" ${obra.vendida ? "disabled" : ""}>
             ${obra.vendida ? "Obra vendida" : "Adquirir obra"}
           </button>
@@ -272,6 +286,30 @@ function abrirInteresse(idDaObra) {
   modal.showModal();
 }
 
+function abrirDetalhes(idDaObra) {
+  const obra = obras.find((item) => item.id === idDaObra);
+  if (!obra) return;
+
+  imagemDetalhe.style.setProperty("--detail-image", `url('${obra.imagem}')`);
+  imagemDetalhe.style.setProperty("--detail-position", obra.posicao);
+  imagemDetalhe.setAttribute("aria-label", obra.titulo);
+  colecaoDetalhe.textContent = obra.colecao;
+  tituloDetalhe.textContent = obra.titulo;
+  descricaoDetalhe.textContent = obra.descricao;
+  tecnicaDetalhe.textContent = obra.tecnica;
+  anoDetalhe.textContent = obra.ano;
+  dimensoesDetalhe.textContent = obra.dimensoes;
+  precoDetalhe.textContent = formatarPrecoPrincipal(obra.preco);
+  acoesDetalhe.innerHTML = obra.vendida
+    ? '<span class="badge-static">Obra vendida</span>'
+    : `
+        <button class="button primary" type="button" data-obra="${obra.id}">Adquirir obra</button>
+        <a class="button whatsapp-button" href="${linkDoWhatsApp(obra.titulo)}" target="_blank" rel="noopener">WhatsApp</a>
+      `;
+
+  modalDeDetalhes.showModal();
+}
+
 async function carregarCotacoes() {
   try {
     const resposta = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL");
@@ -292,8 +330,19 @@ async function carregarCotacoes() {
 }
 
 gradeDeObras.addEventListener("click", (evento) => {
+  const botaoDetalhe = evento.target.closest("[data-detalhe]");
+  if (botaoDetalhe) abrirDetalhes(botaoDetalhe.dataset.detalhe);
+
   const botao = evento.target.closest("[data-obra]");
   if (botao) abrirInteresse(botao.dataset.obra);
+});
+
+acoesDetalhe.addEventListener("click", (evento) => {
+  const botao = evento.target.closest("[data-obra]");
+  if (!botao) return;
+
+  modalDeDetalhes.close();
+  abrirInteresse(botao.dataset.obra);
 });
 
 [filtroDeTecnica, filtroDeAno, filtroDePreco].forEach((controle) => {
@@ -315,6 +364,7 @@ botaoLimparFiltros.addEventListener("click", () => {
 });
 
 botaoFecharModal.addEventListener("click", () => modal.close());
+botaoFecharDetalhes.addEventListener("click", () => modalDeDetalhes.close());
 
 formularioDeInteresse.addEventListener("submit", (evento) => {
   evento.preventDefault();

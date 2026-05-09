@@ -499,6 +499,73 @@ input {
   padding: 28px;
 }
 
+.detail-modal {
+  width: min(980px, calc(100vw - 28px));
+}
+
+.detail-card {
+  grid-template-columns: minmax(260px, 0.9fr) minmax(280px, 1fr);
+  gap: 26px;
+}
+
+.detail-image {
+  min-height: 430px;
+  border-radius: 6px;
+  background-color: #e9e3d8;
+  background-image: var(--detail-image);
+  background-position: var(--detail-position, center);
+  background-size: 300% 200%;
+}
+
+.detail-content {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.detail-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0;
+}
+
+.detail-list div {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fbfaf7;
+}
+
+.detail-list dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.detail-list dd {
+  margin: 4px 0 0;
+  font-weight: 800;
+}
+
+.badge-static {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 12px;
+  border-radius: 4px;
+  background: var(--ink);
+  color: white;
+  font-weight: 800;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .modal-card label {
   display: grid;
   gap: 6px;
@@ -566,5 +633,14 @@ input {
   .collection-grid,
   .about {
     grid-template-columns: 1fr;
+  }
+
+  .detail-card,
+  .detail-list {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-image {
+    min-height: 280px;
   }
 }

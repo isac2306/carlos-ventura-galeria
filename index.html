@@ -149,6 +149,25 @@
       </form>
     </dialog>
 
+    <dialog class="modal detail-modal" id="detailModal">
+      <div class="modal-card detail-card">
+        <button class="close-button" aria-label="Fechar detalhes" type="button" id="closeDetailModal">×</button>
+        <div class="detail-image" id="detailImage" role="img"></div>
+        <div class="detail-content">
+          <p class="eyebrow" id="detailCollection"></p>
+          <h2 id="detailTitle"></h2>
+          <p id="detailDescription"></p>
+          <dl class="detail-list">
+            <div><dt>Técnica</dt><dd id="detailTechnique"></dd></div>
+            <div><dt>Ano</dt><dd id="detailYear"></dd></div>
+            <div><dt>Dimensões</dt><dd id="detailDimensions"></dd></div>
+            <div><dt>Preço</dt><dd id="detailPrice"></dd></div>
+          </dl>
+          <div class="detail-actions" id="detailActions"></div>
+        </div>
+      </div>
+    </dialog>
+
     <script src="script.js"></script>
   </body>
 </html>
