@@ -441,6 +441,34 @@ input {
   color: var(--muted);
 }
 
+.credentials {
+  background: #f2eee6;
+}
+
+.credential-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.credential-grid article {
+  min-height: 260px;
+  display: grid;
+  align-content: end;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+.credential-grid span {
+  color: var(--clay);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
 .contact {
   justify-content: space-between;
   background: #e8dfd0;
@@ -597,6 +625,7 @@ input {
 @media (max-width: 920px) {
   .art-grid,
   .collection-grid,
+  .credential-grid,
   .about,
   .toolbar {
     grid-template-columns: 1fr 1fr;
@@ -631,6 +660,7 @@ input {
   .toolbar,
   .art-grid,
   .collection-grid,
+  .credential-grid,
   .about {
     grid-template-columns: 1fr;
   }
