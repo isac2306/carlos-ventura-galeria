@@ -1,274 +1,277 @@
-const artworks = [
+const obras = [
   {
     id: "sert-01",
-    title: "Sertao e Silencio I",
-    collection: "Sertao e Silencio",
-    technique: "Oleo sobre tela",
-    year: 2024,
-    dimensions: "80 x 100 cm",
-    price: 6200,
-    sold: false,
-    image: "assets/artworks.png",
-    position: "left top",
-    description: "Uma paisagem de respiro seco, feita em camadas de cor quente e pausa."
+    titulo: "Sertão e Silêncio I",
+    colecao: "Sertão e Silêncio",
+    tecnica: "Óleo sobre tela",
+    ano: 2024,
+    dimensoes: "80 x 100 cm",
+    preco: 6200,
+    vendida: false,
+    imagem: "assets/artworks.png",
+    posicao: "left top",
+    descricao: "Uma paisagem de respiro seco, feita em camadas de cor quente e pausa."
   },
   {
     id: "urb-01",
-    title: "Esquina Azul",
-    collection: "Paisagens Urbanas",
-    technique: "Acrilico",
-    year: 2023,
-    dimensions: "70 x 90 cm",
-    price: 4800,
-    sold: false,
-    image: "assets/artworks.png",
-    position: "center top",
-    description: "Luzes, fachadas e memoria afetiva de uma cidade em movimento."
+    titulo: "Esquina Azul",
+    colecao: "Paisagens Urbanas",
+    tecnica: "Acrílico",
+    ano: 2023,
+    dimensoes: "70 x 90 cm",
+    preco: 4800,
+    vendida: false,
+    imagem: "assets/artworks.png",
+    posicao: "center top",
+    descricao: "Luzes, fachadas e memória afetiva de uma cidade em movimento."
   },
   {
     id: "agu-01",
-    title: "Chuva Miuda",
-    collection: "Aquarelas Recentes",
-    technique: "Aquarela",
-    year: 2022,
-    dimensions: "42 x 59 cm",
-    price: 2800,
-    sold: false,
-    image: "assets/artworks.png",
-    position: "right top",
-    description: "Transparencias leves sobre papel, com atmosfera intima e luminosa."
+    titulo: "Chuva Miúda",
+    colecao: "Aquarelas Recentes",
+    tecnica: "Aquarela",
+    ano: 2022,
+    dimensoes: "42 x 59 cm",
+    preco: 2800,
+    vendida: false,
+    imagem: "assets/artworks.png",
+    posicao: "right top",
+    descricao: "Transparências leves sobre papel, com atmosfera íntima e luminosa."
   },
   {
     id: "sert-02",
-    title: "Pedra e Vento",
-    collection: "Sertao e Silencio",
-    technique: "Oleo sobre tela",
-    year: 2021,
-    dimensions: "100 x 120 cm",
-    price: 7600,
-    sold: true,
-    image: "assets/artworks.png",
-    position: "left bottom",
-    description: "Obra de colecao particular, marcada por textura densa e horizonte baixo."
+    titulo: "Pedra e Vento",
+    colecao: "Sertão e Silêncio",
+    tecnica: "Óleo sobre tela",
+    ano: 2021,
+    dimensoes: "100 x 120 cm",
+    preco: 7600,
+    vendida: true,
+    imagem: "assets/artworks.png",
+    posicao: "left bottom",
+    descricao: "Obra de coleção particular, marcada por textura densa e horizonte baixo."
   },
   {
     id: "urb-02",
-    title: "Janela 32",
-    collection: "Paisagens Urbanas",
-    technique: "Acrilico",
-    year: 2020,
-    dimensions: "60 x 80 cm",
-    price: 3900,
-    sold: true,
-    image: "assets/artworks.png",
-    position: "center bottom",
-    description: "Registro de uma fachada imaginada entre sombra, concreto e cor."
+    titulo: "Janela 32",
+    colecao: "Paisagens Urbanas",
+    tecnica: "Acrílico",
+    ano: 2020,
+    dimensoes: "60 x 80 cm",
+    preco: 3900,
+    vendida: true,
+    imagem: "assets/artworks.png",
+    posicao: "center bottom",
+    descricao: "Registro de uma fachada imaginada entre sombra, concreto e cor."
   },
   {
     id: "mem-01",
-    title: "Memoria de Rio",
-    collection: "Aquarelas Recentes",
-    technique: "Aquarela",
-    year: 2024,
-    dimensions: "50 x 70 cm",
-    price: 3400,
-    sold: false,
-    image: "assets/artworks.png",
-    position: "right bottom",
-    description: "A fluidez da agua aparece como lembranca, nao como retrato literal."
+    titulo: "Memória de Rio",
+    colecao: "Aquarelas Recentes",
+    tecnica: "Aquarela",
+    ano: 2024,
+    dimensoes: "50 x 70 cm",
+    preco: 3400,
+    vendida: false,
+    imagem: "assets/artworks.png",
+    posicao: "right bottom",
+    descricao: "A fluidez da água aparece como lembrança, não como retrato literal."
   }
 ];
 
-const collections = [
+const colecoes = [
   {
-    name: "Sertao e Silencio",
-    description: "Horizontes, textura mineral e a calma de lugares que parecem guardar segredo.",
-    image: "url('assets/artworks.png')"
+    nome: "Sertão e Silêncio",
+    descricao: "Horizontes, textura mineral e a calma de lugares que parecem guardar segredo.",
+    imagem: "url('assets/artworks.png')"
   },
   {
-    name: "Paisagens Urbanas",
-    description: "Cenas de cidade filtradas por cor, arquitetura e memoria cotidiana.",
-    image: "url('assets/artworks.png')"
+    nome: "Paisagens Urbanas",
+    descricao: "Cenas de cidade filtradas por cor, arquitetura e memória cotidiana.",
+    imagem: "url('assets/artworks.png')"
   },
   {
-    name: "Aquarelas Recentes",
-    description: "Papeis leves, transparencias e estudos de atmosfera.",
-    image: "url('assets/artworks.png')"
+    nome: "Aquarelas Recentes",
+    descricao: "Papéis leves, transparências e estudos de atmosfera.",
+    imagem: "url('assets/artworks.png')"
   }
 ];
 
-const artGrid = document.querySelector("#artGrid");
-const collectionGrid = document.querySelector("#collectionGrid");
-const techniqueFilter = document.querySelector("#techniqueFilter");
-const yearFilter = document.querySelector("#yearFilter");
-const priceFilter = document.querySelector("#priceFilter");
-const resetFilters = document.querySelector("#resetFilters");
+const gradeDeObras = document.querySelector("#artGrid");
+const gradeDeColecoes = document.querySelector("#collectionGrid");
+const filtroDeTecnica = document.querySelector("#techniqueFilter");
+const filtroDeAno = document.querySelector("#yearFilter");
+const filtroDePreco = document.querySelector("#priceFilter");
+const botaoLimparFiltros = document.querySelector("#resetFilters");
 const modal = document.querySelector("#interestModal");
-const modalTitle = document.querySelector("#modalTitle");
-const artworkInput = document.querySelector("#artworkInput");
-const interestForm = document.querySelector("#interestForm");
-const closeModal = document.querySelector("#closeModal");
-const formNote = document.querySelector("#formNote");
+const tituloDoModal = document.querySelector("#modalTitle");
+const campoObra = document.querySelector("#artworkInput");
+const formularioDeInteresse = document.querySelector("#interestForm");
+const botaoFecharModal = document.querySelector("#closeModal");
+const avisoDoFormulario = document.querySelector("#formNote");
 
-const currency = {
-  USD: null,
-  EUR: null
+const cotacoes = {
+  dolar: null,
+  euro: null
 };
 
-function moneyBRL(value) {
-  return value.toLocaleString("pt-BR", {
+function formatarReal(valor) {
+  return valor.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL"
   });
 }
 
-function moneyForeign(value, code) {
-  return value.toLocaleString(code === "USD" ? "en-US" : "de-DE", {
+function formatarMoedaEstrangeira(valor, codigo) {
+  return valor.toLocaleString(codigo === "USD" ? "en-US" : "de-DE", {
     style: "currency",
-    currency: code
+    currency: codigo
   });
 }
 
-function convertedPrice(price) {
-  if (!currency.USD || !currency.EUR) {
-    return "Conversao internacional indisponivel no momento";
+function precoConvertido(preco) {
+  if (!cotacoes.dolar || !cotacoes.euro) {
+    return "Conversão internacional indisponível no momento";
   }
 
-  return `${moneyForeign(price / currency.USD, "USD")} · ${moneyForeign(price / currency.EUR, "EUR")}`;
+  return `${formatarMoedaEstrangeira(preco / cotacoes.dolar, "USD")} · ${formatarMoedaEstrangeira(preco / cotacoes.euro, "EUR")}`;
 }
 
-function fillFilters() {
-  const techniques = [...new Set(artworks.map((art) => art.technique))];
-  const years = [...new Set(artworks.map((art) => art.year))].sort((a, b) => b - a);
+function preencherFiltros() {
+  const tecnicas = [...new Set(obras.map((obra) => obra.tecnica))];
+  const anos = [...new Set(obras.map((obra) => obra.ano))].sort((a, b) => b - a);
 
-  techniques.forEach((technique) => {
-    const option = document.createElement("option");
-    option.value = technique;
-    option.textContent = technique;
-    techniqueFilter.append(option);
+  tecnicas.forEach((tecnica) => {
+    const opcao = document.createElement("option");
+    opcao.value = tecnica;
+    opcao.textContent = tecnica;
+    filtroDeTecnica.append(opcao);
   });
 
-  years.forEach((year) => {
-    const option = document.createElement("option");
-    option.value = String(year);
-    option.textContent = year;
-    yearFilter.append(option);
+  anos.forEach((ano) => {
+    const opcao = document.createElement("option");
+    opcao.value = String(ano);
+    opcao.textContent = ano;
+    filtroDeAno.append(opcao);
   });
 }
 
-function matchesPrice(art) {
-  if (priceFilter.value === "ate-3000") return art.price <= 3000;
-  if (priceFilter.value === "3000-6000") return art.price > 3000 && art.price <= 6000;
-  if (priceFilter.value === "acima-6000") return art.price > 6000;
+function correspondeAoPreco(obra) {
+  if (filtroDePreco.value === "ate-3000") return obra.preco <= 3000;
+  if (filtroDePreco.value === "3000-6000") return obra.preco > 3000 && obra.preco <= 6000;
+  if (filtroDePreco.value === "acima-6000") return obra.preco > 6000;
   return true;
 }
 
-function filteredArtworks() {
-  return artworks.filter((art) => {
-    const techniqueOk = techniqueFilter.value === "todas" || art.technique === techniqueFilter.value;
-    const yearOk = yearFilter.value === "todos" || String(art.year) === yearFilter.value;
-    return techniqueOk && yearOk && matchesPrice(art);
+function obrasFiltradas() {
+  return obras.filter((obra) => {
+    const tecnicaSelecionada = filtroDeTecnica.value === "todas" || obra.tecnica === filtroDeTecnica.value;
+    const anoSelecionado = filtroDeAno.value === "todos" || String(obra.ano) === filtroDeAno.value;
+    return tecnicaSelecionada && anoSelecionado && correspondeAoPreco(obra);
   });
 }
 
-function renderArtworks() {
-  artGrid.innerHTML = "";
+function renderizarObras() {
+  gradeDeObras.innerHTML = "";
 
-  filteredArtworks().forEach((art) => {
-    const article = document.createElement("article");
-    article.className = "art-card";
-    article.innerHTML = `
-      <div class="art-image" role="img" aria-label="${art.title}" style="--art-image: url('${art.image}'); --art-position: ${art.position}">
-        ${art.sold ? '<span class="badge">Vendido</span>' : ""}
+  obrasFiltradas().forEach((obra) => {
+    const artigo = document.createElement("article");
+    artigo.className = "art-card";
+    artigo.innerHTML = `
+      <div class="art-image" role="img" aria-label="${obra.titulo}" style="--art-image: url('${obra.imagem}'); --art-position: ${obra.posicao}">
+        ${obra.vendida ? '<span class="badge">Vendido</span>' : ""}
       </div>
       <div class="art-body">
-        <div class="meta"><span>${art.collection}</span><span>${art.year}</span><span>${art.dimensions}</span></div>
-        <h3>${art.title}</h3>
-        <p>${art.description}</p>
-        <div class="meta"><span>${art.technique}</span></div>
-        <div class="price">${moneyBRL(art.price)}</div>
-        <div class="converted">${art.sold ? "Portfolio de obras passadas" : convertedPrice(art.price)}</div>
+        <div class="meta"><span>${obra.colecao}</span><span>${obra.ano}</span><span>${obra.dimensoes}</span></div>
+        <h3>${obra.titulo}</h3>
+        <p>${obra.descricao}</p>
+        <div class="meta"><span>${obra.tecnica}</span></div>
+        <div class="price">${formatarReal(obra.preco)}</div>
+        <div class="converted">${obra.vendida ? "Portfólio de obras passadas" : precoConvertido(obra.preco)}</div>
         <div class="card-actions">
-          <button class="button primary" type="button" data-art="${art.id}" ${art.sold ? "disabled" : ""}>
-            ${art.sold ? "Obra vendida" : "Adquirir obra"}
+          <button class="button primary" type="button" data-obra="${obra.id}" ${obra.vendida ? "disabled" : ""}>
+            ${obra.vendida ? "Obra vendida" : "Adquirir obra"}
           </button>
         </div>
       </div>
     `;
-    artGrid.append(article);
+    gradeDeObras.append(artigo);
   });
 }
 
-function renderCollections() {
-  collectionGrid.innerHTML = "";
-  collections.forEach((collection) => {
-    const card = document.createElement("article");
-    card.className = "collection-card";
-    card.style.setProperty("--collection-image", collection.image);
-    card.innerHTML = `<h3>${collection.name}</h3><p>${collection.description}</p>`;
-    collectionGrid.append(card);
+function renderizarColecoes() {
+  gradeDeColecoes.innerHTML = "";
+
+  colecoes.forEach((colecao) => {
+    const cartao = document.createElement("article");
+    cartao.className = "collection-card";
+    cartao.style.setProperty("--collection-image", colecao.imagem);
+    cartao.innerHTML = `<h3>${colecao.nome}</h3><p>${colecao.descricao}</p>`;
+    gradeDeColecoes.append(cartao);
   });
 }
 
-function openInterest(artId) {
-  const artwork = artworks.find((art) => art.id === artId);
-  if (!artwork || artwork.sold) return;
+function abrirInteresse(idDaObra) {
+  const obra = obras.find((item) => item.id === idDaObra);
+  if (!obra || obra.vendida) return;
 
-  artworkInput.value = artwork.title;
-  modalTitle.textContent = `Interesse em "${artwork.title}"`;
-  formNote.textContent = "";
-  interestForm.reset();
+  campoObra.value = obra.titulo;
+  tituloDoModal.textContent = `Interesse em "${obra.titulo}"`;
+  avisoDoFormulario.textContent = "";
+  formularioDeInteresse.reset();
   modal.showModal();
 }
 
-async function loadCurrency() {
+async function carregarCotacoes() {
   try {
-    const response = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL");
-    const data = await response.json();
-    currency.USD = Number(data.USDBRL.bid);
-    currency.EUR = Number(data.EURBRL.bid);
+    const resposta = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL");
+    const dados = await resposta.json();
+    cotacoes.dolar = Number(dados.USDBRL.bid);
+    cotacoes.euro = Number(dados.EURBRL.bid);
   } catch {
-    currency.USD = 5;
-    currency.EUR = 5.4;
+    cotacoes.dolar = 5;
+    cotacoes.euro = 5.4;
   } finally {
-    renderArtworks();
+    renderizarObras();
   }
 }
 
-artGrid.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-art]");
-  if (button) openInterest(button.dataset.art);
+gradeDeObras.addEventListener("click", (evento) => {
+  const botao = evento.target.closest("[data-obra]");
+  if (botao) abrirInteresse(botao.dataset.obra);
 });
 
-[techniqueFilter, yearFilter, priceFilter].forEach((control) => {
-  control.addEventListener("change", renderArtworks);
+[filtroDeTecnica, filtroDeAno, filtroDePreco].forEach((controle) => {
+  controle.addEventListener("change", renderizarObras);
 });
 
-resetFilters.addEventListener("click", () => {
-  techniqueFilter.value = "todas";
-  yearFilter.value = "todos";
-  priceFilter.value = "todos";
-  renderArtworks();
+botaoLimparFiltros.addEventListener("click", () => {
+  filtroDeTecnica.value = "todas";
+  filtroDeAno.value = "todos";
+  filtroDePreco.value = "todos";
+  renderizarObras();
 });
 
-closeModal.addEventListener("click", () => modal.close());
+botaoFecharModal.addEventListener("click", () => modal.close());
 
-interestForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const interests = JSON.parse(localStorage.getItem("carlos-interesses") || "[]");
-  interests.push({
-    artwork: artworkInput.value,
-    name: document.querySelector("#nameInput").value,
+formularioDeInteresse.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+
+  const interessados = JSON.parse(localStorage.getItem("carlos-interesses") || "[]");
+  interessados.push({
+    obra: campoObra.value,
+    nome: document.querySelector("#nameInput").value,
     email: document.querySelector("#emailInput").value,
-    phone: document.querySelector("#phoneInput").value,
-    createdAt: new Date().toISOString()
+    telefone: document.querySelector("#phoneInput").value,
+    criadoEm: new Date().toISOString()
   });
-  localStorage.setItem("carlos-interesses", JSON.stringify(interests));
-  formNote.textContent = "Interesse salvo com sucesso.";
+
+  localStorage.setItem("carlos-interesses", JSON.stringify(interessados));
+  avisoDoFormulario.textContent = "Interesse salvo com sucesso.";
   setTimeout(() => modal.close(), 900);
 });
 
-fillFilters();
-renderCollections();
-renderArtworks();
-loadCurrency();
+preencherFiltros();
+renderizarColecoes();
+renderizarObras();
+carregarCotacoes();
