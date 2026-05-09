@@ -129,6 +129,11 @@ const resumoDePedidos = document.querySelector("#ordersSummary");
 const pedidosVazios = document.querySelector("#ordersEmpty");
 const botaoExportarPedidos = document.querySelector("#exportOrders");
 const botaoLimparPedidos = document.querySelector("#clearOrders");
+const contadorDePedidos = document.querySelector("#ordersBadge");
+const modalDeSucesso = document.querySelector("#successModal");
+const resumoDeSucesso = document.querySelector("#successSummary");
+const botaoFecharSucesso = document.querySelector("#closeSuccessModal");
+const botaoVerPedidosSucesso = document.querySelector("#viewOrdersFromSuccess");
 
 const cotacoes = {
   dolar: null,
@@ -238,6 +243,13 @@ function criarResumoPedidos(pedidos) {
   `;
 }
 
+function atualizarIndicadorDePedidos(pedidos = lerPedidos()) {
+  const pendentes = pedidos.filter((pedido) => pedido.status !== "Finalizado").length;
+  contadorDePedidos.hidden = pendentes === 0;
+  contadorDePedidos.textContent = pendentes;
+  contadorDePedidos.setAttribute("aria-label", `${pendentes} pedidos pendentes`);
+}
+
 function renderizarPedidos() {
   const pedidos = lerPedidos().sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm));
   listaDePedidos.innerHTML = "";
@@ -245,6 +257,7 @@ function renderizarPedidos() {
   botaoExportarPedidos.disabled = pedidos.length === 0;
   botaoLimparPedidos.disabled = pedidos.length === 0;
   criarResumoPedidos(pedidos);
+  atualizarIndicadorDePedidos(pedidos);
 
   pedidos.forEach((pedido) => {
     const item = document.createElement("article");
@@ -275,8 +288,7 @@ function criarPedido() {
   const obra = obras.find((item) => item.titulo === campoObra.value);
   const pedidos = lerPedidos();
   const agora = new Date();
-
-  pedidos.push({
+  const pedido = {
     id: String(agora.getTime()),
     numero: `PED-${String(pedidos.length + 1).padStart(3, "0")}`,
     obra: campoObra.value,
@@ -288,10 +300,21 @@ function criarPedido() {
     observacao: document.querySelector("#noteInput").value.trim(),
     status: "Novo",
     criadoEm: agora.toISOString()
-  });
+  };
 
+  pedidos.push(pedido);
   salvarPedidos(pedidos);
   renderizarPedidos();
+  return pedido;
+}
+
+function abrirConfirmacaoDePedido(pedido) {
+  resumoDeSucesso.innerHTML = `
+    <span><strong>Número:</strong> ${pedido.numero}</span>
+    <span><strong>Obra:</strong> ${pedido.obra}</span>
+    <span><strong>Status:</strong> Em análise</span>
+  `;
+  modalDeSucesso.showModal();
 }
 
 function preencherFiltros() {
@@ -475,9 +498,12 @@ botaoFecharDetalhes.addEventListener("click", () => modalDeDetalhes.close());
 formularioDeInteresse.addEventListener("submit", (evento) => {
   evento.preventDefault();
 
-  criarPedido();
+  const pedido = criarPedido();
   avisoDoFormulario.textContent = "Pedido simulado salvo com sucesso.";
-  setTimeout(() => modal.close(), 900);
+  setTimeout(() => {
+    modal.close();
+    abrirConfirmacaoDePedido(pedido);
+  }, 500);
 });
 
 listaDePedidos.addEventListener("click", (evento) => {
@@ -517,6 +543,12 @@ botaoLimparPedidos.addEventListener("click", () => {
   if (!confirm("Limpar todos os pedidos simulados?")) return;
   salvarPedidos([]);
   renderizarPedidos();
+});
+
+botaoFecharSucesso.addEventListener("click", () => modalDeSucesso.close());
+
+botaoVerPedidosSucesso.addEventListener("click", () => {
+  modalDeSucesso.close();
 });
 
 preencherFiltros();

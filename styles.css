@@ -105,6 +105,27 @@ a {
   color: var(--ink);
 }
 
+.nav-orders-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  min-height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--clay);
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+}
+
 .hero {
   position: relative;
   min-height: calc(100vh - 72px);
@@ -630,6 +651,31 @@ textarea {
 
 .detail-modal {
   width: min(980px, calc(100vw - 28px));
+}
+
+.success-modal {
+  width: min(560px, calc(100vw - 28px));
+}
+
+.success-card {
+  gap: 18px;
+}
+
+.success-card h2 {
+  font-size: clamp(34px, 5vw, 54px);
+}
+
+.success-summary {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fbfaf7;
+}
+
+.success-summary strong {
+  color: var(--ink);
 }
 
 .detail-card {

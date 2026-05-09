@@ -45,7 +45,10 @@
         <a href="#obras">Obras</a>
         <a href="#colecoes">Coleções</a>
         <a href="#sobre">Sobre</a>
-        <a href="#pedidos">Pedidos</a>
+        <a class="nav-orders-link" href="#pedidos">
+          Pedidos
+          <span class="nav-badge" id="ordersBadge" hidden>0</span>
+        </a>
         <a href="#contato">Contato</a>
       </nav>
     </header>
@@ -237,6 +240,19 @@
         <button class="button primary" type="submit">Salvar interesse</button>
         <p class="form-note" id="formNote" aria-live="polite"></p>
       </form>
+    </dialog>
+
+    <dialog class="modal success-modal" id="successModal">
+      <div class="modal-card success-card">
+        <p class="eyebrow">Pedido realizado</p>
+        <h2>Pedido realizado com sucesso</h2>
+        <p>Seu pedido foi registrado e está em análise. Em breve entraremos em contato para confirmar disponibilidade, pagamento e entrega.</p>
+        <div class="success-summary" id="successSummary"></div>
+        <div class="detail-actions">
+          <a class="button primary" href="#pedidos" id="viewOrdersFromSuccess">Ver pedidos</a>
+          <button class="button contact-button" type="button" id="closeSuccessModal">Continuar navegando</button>
+        </div>
+      </div>
     </dialog>
 
     <dialog class="modal detail-modal" id="detailModal">
