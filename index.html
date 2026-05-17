@@ -138,6 +138,16 @@
             <span>Exposições coletivas</span>
             <span>Acervos particulares</span>
           </div>
+          <div class="about-gallery" aria-label="Ateliê e processo criativo">
+            <figure>
+              <img src="assets/atelie-carlos-ventura.jpg" alt="Ateliê com cavalete, telas e materiais de pintura" />
+              <figcaption>Ateliê</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/processo-carlos-ventura.jpg" alt="Mãos trabalhando com aquarela sobre papel" />
+              <figcaption>Processo</figcaption>
+            </figure>
+          </div>
         </div>
         <ol class="timeline">
           <li><strong>2004</strong><span>Primeira exposição individual.</span></li>
@@ -203,26 +213,26 @@
     </a>
 
     <dialog class="modal" id="interestModal">
-      <form method="dialog" class="modal-card" id="interestForm">
+      <form method="post" class="modal-card" id="interestForm">
         <button class="close-button" value="cancel" aria-label="Fechar" type="button" id="closeModal">×</button>
         <p class="eyebrow">Adquirir obra</p>
         <h2 id="modalTitle">Confirmar interesse</h2>
-        <input type="hidden" id="artworkInput" />
+        <input type="hidden" id="artworkInput" name="obra" />
         <label>
           Nome
-          <input id="nameInput" required autocomplete="name" aria-describedby="formNote" />
+          <input id="nameInput" name="nome" required autocomplete="name" aria-describedby="formNote" />
         </label>
         <label>
           E-mail
-          <input id="emailInput" required type="email" autocomplete="email" aria-describedby="formNote" />
+          <input id="emailInput" name="email" required type="email" autocomplete="email" aria-describedby="formNote" />
         </label>
         <label>
           Telefone
-          <input id="phoneInput" required autocomplete="tel" aria-describedby="formNote" />
+          <input id="phoneInput" name="telefone" required autocomplete="tel" aria-describedby="formNote" />
         </label>
         <label>
           Forma de pagamento
-          <select id="paymentInput" required aria-describedby="formNote">
+          <select id="paymentInput" name="pagamento" required aria-describedby="formNote">
             <option value="Pix">Pix</option>
             <option value="Cartão">Cartão</option>
             <option value="Transferência">Transferência</option>
@@ -231,9 +241,9 @@
         </label>
         <label>
           Observação
-          <textarea id="noteInput" rows="3" placeholder="Ex: quero reservar até sexta-feira" aria-describedby="formNote"></textarea>
+          <textarea id="noteInput" name="observacao" rows="3" placeholder="Ex: quero reservar até sexta-feira" aria-describedby="formNote"></textarea>
         </label>
-        <button class="button primary" type="submit">Salvar interesse</button>
+        <button class="button primary" id="submitInterest" type="submit">Enviar interesse</button>
         <p class="form-note" id="formNote" aria-live="polite"></p>
       </form>
     </dialog>

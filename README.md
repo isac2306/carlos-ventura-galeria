@@ -8,7 +8,7 @@ Site de portfólio para apresentar obras de Carlos Ventura, com galeria filtráv
 - filtros por técnica, ano, preço, moeda e status
 - detalhe de cada obra em modal
 - conversão de preços com a AwesomeAPI
-- formulário de interesse
+- formulário de interesse com envio por e-mail para controle do artista
 - área "Meus pedidos" para acompanhar solicitações feitas no navegador
 - links de contato para WhatsApp, Instagram e e-mail
 
@@ -19,7 +19,8 @@ Site de portfólio para apresentar obras de Carlos Ventura, com galeria filtráv
 - JavaScript
 - `localStorage`
 - AwesomeAPI
+- FormSubmit
 
 ## Observação
 
-Os pedidos ficam salvos localmente no navegador. Para uso real com vários clientes, ainda seria necessário conectar o site a um backend ou serviço de formulários.
+Os pedidos continuam salvos localmente para o cliente acompanhar, e também são enviados por e-mail ao artista com FormSubmit. Na primeira utilização, o serviço pode pedir a confirmação do endereço de e-mail antes de começar a encaminhar as mensagens.

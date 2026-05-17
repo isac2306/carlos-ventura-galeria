@@ -132,6 +132,7 @@ const modalDeSucesso = document.querySelector("#successModal");
 const resumoDeSucesso = document.querySelector("#successSummary");
 const botaoFecharSucesso = document.querySelector("#closeSuccessModal");
 const botaoVerPedidosSucesso = document.querySelector("#viewOrdersFromSuccess");
+const botaoEnviarInteresse = document.querySelector("#submitInterest");
 
 const cotacoes = {
   dolar: null,
@@ -142,6 +143,7 @@ const cotacoes = {
 
 const telefoneWhatsApp = "5586999954249";
 const chavePedidos = "carlos-pedidos";
+const endpointPedidos = "https://formsubmit.co/ajax/isacalbuquerque23@gmail.com";
 let moedaSelecionada = "BRL";
 
 function formatarReal(valor) {
@@ -277,7 +279,7 @@ function criarPedido() {
   const obra = obras.find((item) => item.titulo === campoObra.value);
   const pedidos = lerPedidos();
   const agora = new Date();
-  const pedido = {
+  return {
     id: String(agora.getTime()),
     numero: `PED-${String(pedidos.length + 1).padStart(3, "0")}`,
     obra: campoObra.value,
@@ -290,11 +292,41 @@ function criarPedido() {
     status: "Novo",
     criadoEm: agora.toISOString()
   };
+}
 
+function salvarPedidoDoCliente(pedido) {
+  const pedidos = lerPedidos();
   pedidos.push(pedido);
   salvarPedidos(pedidos);
   renderizarPedidos();
-  return pedido;
+}
+
+async function enviarPedidoAoArtista(pedido) {
+  const dados = new FormData();
+  dados.append("_subject", `Novo interesse na obra ${pedido.obra}`);
+  dados.append("_template", "table");
+  dados.append("_url", location.href.split("#")[0]);
+  dados.append("pedido", pedido.numero);
+  dados.append("obra", pedido.obra);
+  dados.append("nome", pedido.nome);
+  dados.append("email", pedido.email);
+  dados.append("telefone", pedido.telefone);
+  dados.append("pagamento", pedido.pagamento);
+  dados.append("observacao", pedido.observacao || "Nenhuma");
+  dados.append("status", "Em análise");
+  dados.append("data", new Date(pedido.criadoEm).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }));
+
+  const resposta = await fetch(endpointPedidos, {
+    method: "POST",
+    headers: {
+      Accept: "application/json"
+    },
+    body: dados
+  });
+
+  if (!resposta.ok) {
+    throw new Error("Falha ao enviar pedido.");
+  }
 }
 
 function abrirConfirmacaoDePedido(pedido) {
@@ -484,15 +516,26 @@ botaoLimparFiltros.addEventListener("click", () => {
 botaoFecharModal.addEventListener("click", () => modal.close());
 botaoFecharDetalhes.addEventListener("click", () => modalDeDetalhes.close());
 
-formularioDeInteresse.addEventListener("submit", (evento) => {
+formularioDeInteresse.addEventListener("submit", async (evento) => {
   evento.preventDefault();
 
   const pedido = criarPedido();
-  avisoDoFormulario.textContent = "Pedido salvo com sucesso.";
-  setTimeout(() => {
-    modal.close();
-    abrirConfirmacaoDePedido(pedido);
-  }, 500);
+  botaoEnviarInteresse.disabled = true;
+  avisoDoFormulario.textContent = "Enviando pedido...";
+
+  try {
+    await enviarPedidoAoArtista(pedido);
+    salvarPedidoDoCliente(pedido);
+    avisoDoFormulario.textContent = "Pedido enviado com sucesso.";
+    setTimeout(() => {
+      modal.close();
+      abrirConfirmacaoDePedido(pedido);
+    }, 500);
+  } catch {
+    avisoDoFormulario.textContent = "Não foi possível enviar agora. Tente novamente ou fale pelo WhatsApp.";
+  } finally {
+    botaoEnviarInteresse.disabled = false;
+  }
 });
 
 botaoFecharSucesso.addEventListener("click", () => modalDeSucesso.close());
