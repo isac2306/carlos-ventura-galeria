@@ -530,6 +530,25 @@ textarea {
   text-transform: uppercase;
 }
 
+.credential-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.credential-list li {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.credential-list strong {
+  display: inline-block;
+  min-width: 42px;
+  color: var(--ink);
+}
+
 .orders {
   background: #fbfaf7;
 }
