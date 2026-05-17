@@ -508,7 +508,7 @@ textarea {
 
 .orders-summary {
   display: grid;
-  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
   gap: 12px;
   margin-bottom: 16px;
 }
@@ -532,17 +532,6 @@ textarea {
 .orders-summary span {
   color: var(--muted);
   font-weight: 800;
-}
-
-.orders-actions,
-.order-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.orders-actions {
-  margin-bottom: 20px;
 }
 
 .orders-list {
@@ -584,11 +573,6 @@ textarea {
   padding: 12px;
   border-left: 4px solid var(--gold);
   background: #f2eee6;
-}
-
-.danger-button {
-  border-color: var(--clay);
-  color: var(--clay);
 }
 
 .contact {
