@@ -10,7 +10,7 @@ const obras = [
     vendida: false,
     imagem: "assets/artworks-optimized.jpg",
     posicao: "left top",
-    descricao: "Uma paisagem de respiro seco, feita em camadas de cor quente e pausa."
+    descricao: "Paisagem do sertão construída com tons quentes e pinceladas largas."
   },
   {
     id: "urb-01",
@@ -23,7 +23,7 @@ const obras = [
     vendida: false,
     imagem: "assets/artworks-optimized.jpg",
     posicao: "center top",
-    descricao: "Luzes, fachadas e memória afetiva de uma cidade em movimento."
+    descricao: "Cena urbana com fachadas, luz e ruas molhadas."
   },
   {
     id: "agu-01",
@@ -36,7 +36,7 @@ const obras = [
     vendida: false,
     imagem: "assets/artworks-optimized.jpg",
     posicao: "right top",
-    descricao: "Transparências leves sobre papel, com atmosfera íntima e luminosa."
+    descricao: "Aquarela leve, marcada por transparências e chuva fina."
   },
   {
     id: "sert-02",
@@ -49,7 +49,7 @@ const obras = [
     vendida: true,
     imagem: "assets/artworks-optimized.jpg",
     posicao: "left bottom",
-    descricao: "Obra de coleção particular, marcada por textura densa e horizonte baixo."
+    descricao: "Composição de textura forte, horizonte baixo e tons terrosos."
   },
   {
     id: "urb-02",
@@ -62,7 +62,7 @@ const obras = [
     vendida: true,
     imagem: "assets/artworks-optimized.jpg",
     posicao: "center bottom",
-    descricao: "Registro de uma fachada imaginada entre sombra, concreto e cor."
+    descricao: "Fachada geométrica construída com blocos de sombra, concreto e cor."
   },
   {
     id: "mem-01",
@@ -75,24 +75,24 @@ const obras = [
     vendida: false,
     imagem: "assets/artworks-optimized.jpg",
     posicao: "right bottom",
-    descricao: "A fluidez da água aparece como lembrança, não como retrato literal."
+    descricao: "Paisagem de rio em tons suaves e bordas dissolvidas."
   }
 ];
 
 const colecoes = [
   {
     nome: "Sertão e Silêncio",
-    descricao: "Horizontes, textura mineral e a calma de lugares que parecem guardar segredo.",
+    descricao: "Paisagens secas, pedras e horizontes abertos.",
     imagem: "url('assets/artworks-optimized.jpg')"
   },
   {
     nome: "Paisagens Urbanas",
-    descricao: "Cenas de cidade filtradas por cor, arquitetura e memória cotidiana.",
+    descricao: "Ruas, fachadas e pequenos recortes do cotidiano urbano.",
     imagem: "url('assets/artworks-optimized.jpg')"
   },
   {
     nome: "Aquarelas Recentes",
-    descricao: "Papéis leves, transparências e estudos de atmosfera.",
+    descricao: "Estudos em papel com transparências e chuva."
     imagem: "url('assets/artworks-optimized.jpg')"
   }
 ];
