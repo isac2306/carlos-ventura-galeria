@@ -8,9 +8,9 @@ const obras = [
     dimensoes: "80 x 100 cm",
     preco: 6200,
     vendida: false,
-    imagem: "assets/artworks-optimized.jpg",
-    posicao: "left top",
-    descricao: "Paisagem do sertão construída com tons quentes e pinceladas largas."
+    imagem: "assets/sertao-silencio-i.jpg",
+    posicao: "center",
+    descricao: "Estrada de terra atravessando a caatinga sob luz seca, com massas de ocre e vermelho queimado."
   },
   {
     id: "urb-01",
@@ -21,9 +21,9 @@ const obras = [
     dimensoes: "70 x 90 cm",
     preco: 4800,
     vendida: false,
-    imagem: "assets/artworks-optimized.jpg",
-    posicao: "center top",
-    descricao: "Cena urbana com fachadas, luz e ruas molhadas."
+    imagem: "assets/esquina-azul.jpg",
+    posicao: "center",
+    descricao: "Esquina silenciosa depois da chuva, marcada por fachadas azuis e reflexos no asfalto."
   },
   {
     id: "agu-01",
@@ -34,9 +34,9 @@ const obras = [
     dimensoes: "42 x 59 cm",
     preco: 2800,
     vendida: false,
-    imagem: "assets/artworks-optimized.jpg",
-    posicao: "right top",
-    descricao: "Aquarela leve, marcada por transparências e chuva fina."
+    imagem: "assets/chuva-miuda.jpg",
+    posicao: "center",
+    descricao: "Aquarela de chuva fina sobre telhados e árvores, construída em camadas quase transparentes."
   },
   {
     id: "sert-02",
@@ -47,9 +47,9 @@ const obras = [
     dimensoes: "100 x 120 cm",
     preco: 7600,
     vendida: true,
-    imagem: "assets/artworks-optimized.jpg",
-    posicao: "left bottom",
-    descricao: "Composição de textura forte, horizonte baixo e tons terrosos."
+    imagem: "assets/pedra-e-vento.jpg",
+    posicao: "center",
+    descricao: "Rochas expostas e vegetação baixa em uma paisagem aberta, organizada por vento, sombra e textura."
   },
   {
     id: "urb-02",
@@ -60,9 +60,9 @@ const obras = [
     dimensoes: "60 x 80 cm",
     preco: 3900,
     vendida: true,
-    imagem: "assets/artworks-optimized.jpg",
-    posicao: "center bottom",
-    descricao: "Fachada geométrica construída com blocos de sombra, concreto e cor."
+    imagem: "assets/janela-32.jpg",
+    posicao: "center",
+    descricao: "Fachada de linhas duras, recortada por uma janela numerada e por planos de azul, cinza e sombra."
   },
   {
     id: "mem-01",
@@ -73,27 +73,27 @@ const obras = [
     dimensoes: "50 x 70 cm",
     preco: 3400,
     vendida: false,
-    imagem: "assets/artworks-optimized.jpg",
-    posicao: "right bottom",
-    descricao: "Paisagem de rio em tons suaves e bordas dissolvidas."
+    imagem: "assets/memoria-de-rio.jpg",
+    posicao: "center",
+    descricao: "Rio calmo visto ao entardecer, com margens dissolvidas e cor espalhada como lembrança."
   }
 ];
 
 const colecoes = [
   {
     nome: "Sertão e Silêncio",
-    descricao: "Paisagens secas, pedras e horizontes abertos.",
-    imagem: "url('assets/artworks-optimized.jpg')"
+    descricao: "Paisagens secas, pedras e horizontes abertos em óleo sobre tela.",
+    imagem: "url('assets/sertao-silencio-i.jpg')"
   },
   {
     nome: "Paisagens Urbanas",
-    descricao: "Ruas, fachadas e pequenos recortes do cotidiano urbano.",
-    imagem: "url('assets/artworks-optimized.jpg')"
+    descricao: "Ruas, fachadas e pequenos recortes do cotidiano urbano em acrílico.",
+    imagem: "url('assets/esquina-azul.jpg')"
   },
   {
     nome: "Aquarelas Recentes",
-    descricao: "Estudos em papel com transparências e chuva."
-    imagem: "url('assets/artworks-optimized.jpg')"
+    descricao: "Estudos em papel com transparências, névoa e memória de água.",
+    imagem: "url('assets/chuva-miuda.jpg')"
   }
 ];
 

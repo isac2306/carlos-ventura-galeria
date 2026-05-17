@@ -362,7 +362,7 @@ textarea {
   background-color: #e9e3d8;
   background-image: var(--art-image);
   background-position: var(--art-position, center);
-  background-size: 300% 200%;
+  background-size: cover;
 }
 
 .badge {
@@ -673,7 +673,7 @@ textarea {
   background-color: #e9e3d8;
   background-image: var(--detail-image);
   background-position: var(--detail-position, center);
-  background-size: 300% 200%;
+  background-size: cover;
 }
 
 .detail-content {
