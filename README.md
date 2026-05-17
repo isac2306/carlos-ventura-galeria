@@ -1,6 +1,6 @@
 # Carlos Ventura - Galeria Online
 
-Site de portfólio para apresentar obras de Carlos Ventura, com galeria filtrável, detalhes das peças, conversão de preços e acompanhamento de pedidos.
+Site de portfólio para apresentar obras de Carlos Ventura, com galeria, filtros, detalhes das peças, conversão de preços e pedidos.
 
 ## O que o site tem
 

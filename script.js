@@ -82,17 +82,17 @@ const obras = [
 const colecoes = [
   {
     nome: "Sertão e Silêncio",
-    descricao: "Paisagens secas, pedras e horizontes abertos em óleo sobre tela.",
+    descricao: "Paisagens secas, pedras e horizontes abertos.",
     imagem: "url('assets/sertao-silencio-i.jpg')"
   },
   {
     nome: "Paisagens Urbanas",
-    descricao: "Ruas, fachadas e pequenos recortes do cotidiano urbano em acrílico.",
+    descricao: "Ruas, fachadas e cenas do cotidiano urbano.",
     imagem: "url('assets/esquina-azul.jpg')"
   },
   {
     nome: "Aquarelas Recentes",
-    descricao: "Estudos em papel com transparências, névoa e memória de água.",
+    descricao: "Estudos em papel com chuva, água e transparências.",
     imagem: "url('assets/chuva-miuda.jpg')"
   }
 ];
@@ -396,7 +396,7 @@ function renderizarObras() {
         <p>${obra.descricao}</p>
         <div class="meta"><span>${obra.tecnica}</span></div>
         <div class="price">${formatarPrecoPrincipal(obra.preco)}</div>
-        <div class="converted">${obra.vendida ? "Portfólio de obras passadas" : resumoDeConversao(obra.preco)}</div>
+        <div class="converted">${obra.vendida ? "Obra já vendida" : resumoDeConversao(obra.preco)}</div>
         <div class="card-actions">
           <button class="button whatsapp-button" type="button" data-detalhe="${obra.id}">
             Ver detalhes
