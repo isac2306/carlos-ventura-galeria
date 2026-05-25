@@ -23,4 +23,4 @@ Site de portfólio para apresentar obras de Carlos Ventura, com galeria, filtros
 
 ## Observação
 
-Os pedidos continuam salvos localmente para o cliente acompanhar, e também são enviados por e-mail ao artista com FormSubmit. Na primeira utilização, o serviço pode pedir a confirmação do endereço de e-mail antes de começar a encaminhar as mensagens.
+Os pedidos continuam salvos localmente para o cliente acompanhar, e também são enviados por e-mail ao artista com FormSubmit. Na primeira utilização, o serviço pode pedir a confirmação do endereço de e-mail antes de começar a encaminhar as mensagens
